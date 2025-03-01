@@ -1,0 +1,12 @@
+C:\Pruebas\RestaurantesReservas.Data\bin\Debug\net8.0\RestaurantesReservas.Data.deps.json
+C:\Pruebas\RestaurantesReservas.Data\bin\Debug\net8.0\RestaurantesReservas.Data.dll
+C:\Pruebas\RestaurantesReservas.Data\bin\Debug\net8.0\RestaurantesReservas.Data.pdb
+C:\Pruebas\RestaurantesReservas.Data\obj\Debug\net8.0\RestaurantesReservas.Data.csproj.AssemblyReference.cache
+C:\Pruebas\RestaurantesReservas.Data\obj\Debug\net8.0\RestaurantesReservas.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Pruebas\RestaurantesReservas.Data\obj\Debug\net8.0\RestaurantesReservas.Data.AssemblyInfoInputs.cache
+C:\Pruebas\RestaurantesReservas.Data\obj\Debug\net8.0\RestaurantesReservas.Data.AssemblyInfo.cs
+C:\Pruebas\RestaurantesReservas.Data\obj\Debug\net8.0\RestaurantesReservas.Data.csproj.CoreCompileInputs.cache
+C:\Pruebas\RestaurantesReservas.Data\obj\Debug\net8.0\RestaurantesReservas.Data.dll
+C:\Pruebas\RestaurantesReservas.Data\obj\Debug\net8.0\refint\RestaurantesReservas.Data.dll
+C:\Pruebas\RestaurantesReservas.Data\obj\Debug\net8.0\RestaurantesReservas.Data.pdb
+C:\Pruebas\RestaurantesReservas.Data\obj\Debug\net8.0\ref\RestaurantesReservas.Data.dll

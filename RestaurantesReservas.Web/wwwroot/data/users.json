@@ -1,0 +1,26 @@
+[
+  {
+    "FirstName": "Admin",
+    "LastName": "User",
+    "Username": "admin",
+    "Email": "admin@example.com",
+    "Password": "adminpassword",
+    "Role": "Admin"
+  },
+  {
+    "FirstName": "Max",
+    "LastName": "Linares",
+    "Username": "MaxLinares",
+    "Email": "MaxLinares@gmail.com",
+    "Password": "MaxLinares",
+    "Role": "User"
+  },
+  {
+    "FirstName": "Carl ",
+    "LastName": "Johnson",
+    "Username": "CJ",
+    "Email": "CjGroove@gmail.com",
+    "Password": "123456789",
+    "Role": "User"
+  }
+]

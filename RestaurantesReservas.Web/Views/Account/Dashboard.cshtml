@@ -1,0 +1,120 @@
+﻿@model IEnumerable<RestaurantesReservas.Web.Models.Reservation>
+<div class="row mt-4">
+    <div class="col-md-12">
+        <a href="/Account/EditProfile" class="btn btn-secondary">Editar Perfil</a>
+        <a href="/Reservations/Create" class="btn btn-primary">Crear Reserva</a>
+    </div>
+</div>
+@{
+    ViewData["Title"] = "Dashboard";
+    var restaurants = ViewBag.Restaurants as List<RestaurantesReservas.Web.Models.Restaurant>;
+    var userName = ViewBag.UserName as string;
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Bienvenido, @userName</h2>
+            <p>Este es tu panel de control.</p>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h3>Buscar Restaurante</h3>
+            <form method="post" asp-action="CreateReservation">
+                <div class="form-group">
+                    <label for="restaurantName">Nombre del Restaurante</label>
+                    <input type="text" class="form-control" id="restaurantName" name="RestaurantName" required>
+                </div>
+                <div class="form-group">
+                    <label for="reservationDate">Fecha de la Reserva</label>
+                    <input type="date" class="form-control" id="reservationDate" name="ReservationDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="numberOfPeople">Número de Personas</label>
+                    <input type="number" class="form-control" id="numberOfPeople" name="NumberOfPeople" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Crear Reserva</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3>
+                <a class="btn btn-link" data-bs-toggle="collapse" href="#restaurantList" role="button" aria-expanded="false" aria-controls="restaurantList">
+                    Lista de Restaurantes
+                </a>
+            </h3>
+            <div class="collapse" id="restaurantList">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Ubicación</th>
+                            <th>Tipo de Comida</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (restaurants != null)
+                        {
+                            @foreach (var restaurant in restaurants)
+                            {
+                                <tr>
+                                    <td>@restaurant.Name</td>
+                                    <td>@restaurant.Location</td>
+                                    <td>@restaurant.Cuisine</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3>Mis Reservas</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Restaurante</th>
+                        <th>Fecha</th>
+                        <th>Número de Personas</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var reservation in Model)
+                    {
+                        <tr>
+                            <td>@reservation.RestaurantName</td>
+                            <td>@reservation.ReservationDate.ToShortDateString()</td>
+                            <td>@reservation.NumberOfPeople</td>
+                            <td>
+                                <form method="post" asp-action="CancelReservation">
+                                    <input type="hidden" name="id" value="@reservation.Id" />
+                                    <button type="submit" class="btn btn-danger">Cancelar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(function () {
+            var restaurantNames = @Html.Raw(Json.Serialize(restaurants?.Select(r => r.Name).ToList() ?? new List<string>()));
+            $("#restaurantName").autocomplete({
+                source: restaurantNames
+            });
+        });
+    </script>
+}

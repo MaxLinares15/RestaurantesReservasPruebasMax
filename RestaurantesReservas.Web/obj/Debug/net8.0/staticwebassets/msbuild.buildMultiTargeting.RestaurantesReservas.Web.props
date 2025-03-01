@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\RestaurantesReservas.Web.props" />
+</Project>

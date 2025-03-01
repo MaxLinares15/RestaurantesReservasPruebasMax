@@ -1,0 +1,73 @@
+﻿@page "/registerform"
+@using System.Text.Json
+@using RestaurantesReservas.Web.Models
+@using Microsoft.AspNetCore.Components.Forms
+@inject IWebHostEnvironment Environment
+
+<div class="container mt-5">
+    <h3 class="text-center">@Title</h3>
+
+    <EditForm Model="@user" OnValidSubmit="HandleValidSubmit" class="mt-4">
+        <DataAnnotationsValidator />
+        <ValidationSummary class="alert alert-danger" />
+
+        <div class="form-group">
+            <label>First Name:</label>
+            <InputText @bind-Value="user.FirstName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Last Name:</label>
+            <InputText @bind-Value="user.LastName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <InputText @bind-Value="user.Email" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Password:</label>
+            <InputText @bind-Value="user.Password" type="password" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </EditForm>
+
+    @if (!string.IsNullOrEmpty(statusMessage))
+    {
+        <div class="alert @statusClass mt-3">@statusMessage</div>
+    }
+</div>
+
+@code {
+    private User user = new User();
+    private string statusMessage;
+    private string statusClass;
+
+    [Parameter]
+    public string Title { get; set; }
+
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            Console.WriteLine("HandleValidSubmit called");
+            var dataDirectory = Path.Combine(Environment.WebRootPath, "data");
+            if (!Directory.Exists(dataDirectory))
+            {
+                Directory.CreateDirectory(dataDirectory);
+            }
+
+            var filePath = Path.Combine(dataDirectory, "user.json");
+            var jsonData = JsonSerializer.Serialize(user);
+            await File.WriteAllTextAsync(filePath, jsonData);
+            statusMessage = "User registered successfully!";
+            statusClass = "alert-success";
+            Console.WriteLine("User data saved");
+        }
+        catch (Exception ex)
+        {
+            statusMessage = $"An error occurred: {ex.Message}";
+            statusClass = "alert-danger";
+            Console.WriteLine($"An error occurred: {ex.Message}");
+        }
+    }
+}
+
